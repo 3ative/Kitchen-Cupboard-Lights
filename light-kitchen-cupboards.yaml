@@ -13,9 +13,9 @@ esphome:
 
 substitutions:
   # Enter the name of the Room here - Capitals are ok, it's only used for Dashboard names/labels
-  name: Kitchen 
-  # Timer duration (Minutes). E.G.: "60" for a 1 hour timer
-  time_out: "0.1" 
+  name: Kitchen Cupboards
+  # Timer duration (Minutes). E.G.: "60" 1 hour, "0.1" 6 Seconds
+  time_out: "5" 
 
 logger:
   logs:
@@ -44,7 +44,6 @@ binary_sensor:
     name: ${name} Motion
     pin: D6
     device_class: motion
-    
     on_press:
       then:
         - if:
@@ -84,7 +83,7 @@ script:
 light:
   - platform: monochromatic
     id: leds
-    name: ${name} cupboards
+    name: ${name}
     output: string
     default_transition_length: 2s
 
