@@ -1,0 +1,95 @@
+esphome:
+  name: light-kitchen-cupboards
+  platform: ESP8266
+  board: d1_mini
+  # Set the light to 20% on boot
+  on_boot:
+    priority: 700
+    then:
+      - light.turn_on:
+          id: leds
+          brightness: 20%
+      - light.turn_off: leds
+
+substitutions:
+  # Enter the name of the Room here - Capitals are ok, it's only used for Dashboard names/labels
+  name: Kitchen 
+  # Timer duration (Minutes). E.G.: "60" for a 1 hour timer
+  time_out: "0.1" 
+
+logger:
+  logs:
+    light: none
+    binary_sensor: none
+    switch: none
+api:
+ota:
+
+wifi:
+  ssid: !secret ssid
+  password: !secret wifi_password
+
+switch:
+  - platform: template
+    id: enable
+    name: ${name} Day / Night
+    optimistic: true
+
+binary_sensor:
+  - platform: template
+    id: timer
+
+  - platform: gpio
+    id: radar
+    name: ${name} Motion
+    pin: D6
+    device_class: motion
+    
+    on_press:
+      then:
+        - if:
+            condition:
+              - light.is_off: leds
+              - switch.is_on: enable
+            then:
+              - light.turn_on:
+                  id: leds
+                  brightness: !lambda |-
+                    return id(leds).current_values.get_brightness();
+              - lambda: !lambda |-
+                  id(timer).publish_state(true);
+            else:
+              - script.stop: timeout
+    on_release:
+      then:
+        - if:
+            condition:
+              - binary_sensor.is_on: timer
+            then:
+              - script.execute: timeout
+
+script:
+  - id: timeout
+    mode: restart
+    then:
+      - if:
+          condition:
+            - binary_sensor.is_on: timer
+          then:
+            - delay: ${time_out} minutes
+            - light.turn_off: leds
+            - lambda: !lambda |-
+                id(timer).publish_state(false);
+
+light:
+  - platform: monochromatic
+    id: leds
+    name: ${name} cupboards
+    output: string
+    default_transition_length: 2s
+
+output:
+  - platform: esp8266_pwm
+    frequency: 3000
+    id: string
+    pin: D8
