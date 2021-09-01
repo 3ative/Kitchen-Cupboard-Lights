@@ -12,10 +12,18 @@ esphome:
       - light.turn_off: leds
 
 substitutions:
-  # Enter the name of the Room here - Capitals are ok, it's only used for Dashboard names/labels
+  # Enter the name of the Room here - Capitals are ok, it's only used for Dashboard Names/Labels
   name: Kitchen Cupboards
+  
   # Timer duration (Minutes). E.G.: "60" 1 hour, "0.1" 6 Seconds
-  time_out: "5" 
+  off_time: "5" 
+
+# Replace your Wifi details
+wifi:
+  ssid: !secret ssid
+  password: !secret wifi_password
+
+# ====== No need to change anything below this line ======
 
 logger:
   logs:
@@ -25,13 +33,9 @@ logger:
 api:
 ota:
 
-wifi:
-  ssid: !secret ssid
-  password: !secret wifi_password
-
 switch:
   - platform: template
-    id: enable
+    id: day_night_mode
     name: ${name} Day / Night
     optimistic: true
 
@@ -40,16 +44,17 @@ binary_sensor:
     id: timer
 
   - platform: gpio
-    id: radar
+    id: motion_sensor
     name: ${name} Motion
     pin: D6
     device_class: motion
+    
     on_press:
       then:
         - if:
             condition:
               - light.is_off: leds
-              - switch.is_on: enable
+              - switch.is_on: day_night_mode
             then:
               - light.turn_on:
                   id: leds
@@ -75,7 +80,7 @@ script:
           condition:
             - binary_sensor.is_on: timer
           then:
-            - delay: ${time_out} minutes
+            - delay: ${off_time} minutes
             - light.turn_off: leds
             - lambda: !lambda |-
                 id(timer).publish_state(false);
