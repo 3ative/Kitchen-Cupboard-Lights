@@ -1,15 +1,23 @@
-# Kitchen-Cupboard-Lights
-Project: Kitchen Lights with Motion Sensor
+# Project: Kitchen Cupboard Lights
+ESPHome motion sensing light controller, with Day/Night (Enable/Disable) switch. 
 
-Motion sensing light controller for ESPHome. See my YouTube video for build guide and a full run-down of the code
+### Features:
 
-## Tutorial:
+> - Everything coded on-board - Sensing, Automation, Timer, etc 
+> - _NOTHING_ to program in Home Assistant; _No Scripts, Automations, Node-Red, etc_
+> - Manual Override - _Won't turn off / timeout if light is already on_
+> - Stand-alone operation - _Functions without WiFi / Host_
+
+
+See my YouTube tutorial for build guide and a full code run-down, here: 
+
+
 
 
 
 
 🎁 Found this useful or want to say 'thanks' and support my efforts...
 
-[![BMC](https://www.buymeacoffee.com/assets/img/custom_images/white_img.png)](https://www.buymeacoffee.com/3ative) **And leave a me a message to let me know.**  ❤
+[![BMC](https://www.buymeacoffee.com/assets/img/custom_images/white_img.png)](https://www.buymeacoffee.com/3ative) **And leave a me a message to let me know how much you ❤ it.**
 
 🍺 CHEERS! 👍
