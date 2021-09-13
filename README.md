@@ -1,7 +1,7 @@
 # Project: Kitchen Cupboard Lights
 ESPHome motion sensing light controller, with Day/Night (Enable/Disable) switch. 
 
-Grab the full ESPHome Code from the file: light-kitchen-cupboards.yaml above
+Grab the full ESPHome Code from the file: https://github.com/3ative/Kitchen-Cupboard-Lights/blob/main/light-kitchen-cupboards.yaml above
 ### Features:
 
 > - Everything coded on-board - Sensing, Automation, Timer, etc 
