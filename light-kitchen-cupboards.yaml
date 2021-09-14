@@ -2,23 +2,23 @@ esphome:
   name: light-kitchen-cupboards
   platform: ESP8266
   board: d1_mini
-  
-  # Sets the light to 20% on boot
+
+  # Sets the light to 50% on boot
   on_boot:
     priority: 700
     then:
       - light.turn_on:
-          id: leds
-          brightness: 20%
-      - light.turn_off: leds
+          id: led_lights
+          brightness: 50%
+      - light.turn_off: led_lights
 
 substitutions:
   # Enter the name of the Room here - Capitals and Spaces are ok. However...
   # capitals and spaces will get converted for entity names. E.G. the Light will be called "light.kitchen_cupboards"
   name: Kitchen Cupboards
-  
+
   # Timer duration (Minutes). E.G.: "60" 1 hour, "0.1" 6 Seconds
-  off_time: "10" 
+  off_time: "10"
 
 # Replace your Wifi details
 wifi:
@@ -50,19 +50,18 @@ binary_sensor:
     name: ${name} Motion
     pin: D6
     device_class: motion
-    
     on_press:
       then:
         - if:
             condition:
               and:
-                - light.is_off: leds
+                - light.is_off: led_lights
                 - switch.is_on: day_night_mode
             then:
               - light.turn_on:
-                  id: leds
+                  id: led_lights
                   brightness: !lambda |-
-                    return id(leds).current_values.get_brightness();
+                    return id(led_lights).current_values.get_brightness();
               - lambda: !lambda |-
                   id(timer).publish_state(true);
             else:
@@ -84,19 +83,18 @@ script:
             - binary_sensor.is_on: timer
           then:
             - delay: ${off_time} minutes
-            - light.turn_off: leds
+            - light.turn_off: led_lights
             - lambda: !lambda |-
                 id(timer).publish_state(false);
 
 light:
   - platform: monochromatic
-    id: leds
+    id: led_lights
     name: ${name}
-    output: string
-    default_transition_length: 2s
-
+    output: output_pwm
+    default_transition_length: 1s
 output:
   - platform: esp8266_pwm
-    frequency: 3000
-    id: string
+    frequency: 4000
+    id: output_pwm
     pin: D8
