@@ -18,7 +18,7 @@ substitutions:
   name: Kitchen Cupboards
   
   # Timer duration (Minutes). E.G.: "60" 1 hour, "0.1" 6 Seconds
-  off_time: "0.1" 
+  off_time: "10" 
 
 # Replace your Wifi details
 wifi:
@@ -45,7 +45,7 @@ binary_sensor:
   - platform: template
     id: timer
 
-- platform: gpio
+  - platform: gpio
     id: motion_sensor
     name: ${name} Motion
     pin: D6
@@ -55,8 +55,9 @@ binary_sensor:
       then:
         - if:
             condition:
-              - light.is_off: leds
-              - switch.is_on: day_night_mode
+              and:
+                - light.is_off: leds
+                - switch.is_on: day_night_mode
             then:
               - light.turn_on:
                   id: leds
