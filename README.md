@@ -7,13 +7,12 @@ Grab the full ESPHome Code from the file: [light-kitchen-cupboards.yaml](https:/
 
 ### Features:
 
-> - Fully coded on-board - Sensing, Automation, Timer, etc 
-> - _NOTHING_ to program in Home Assistant; _No Scripts, Automations, Node-Red, etc_
+> - Sensing, Automation, Timer, etc coded on-board - _No HA/Node-Red Scripts, Automations, etc required_
+> - Day / Night Modes - _For Night time only operation_
 > - Manual Override - _Won't turn off / timeout if light is already on_
-> - Stand-alone operation - _Functions without WiFi / Host_
 
 
-#### See the YouTube tutorial for build guide and a full code run-down, here: [ESPHome: Motion Sensing Kitchen Lights Tutorial](https://youtu.be/aw0FqZZQ76g)
+#### YouTube tutorial for build guide and a full code run-down: [ESPHome: Motion Sensing Kitchen Lights Tutorial](https://youtu.be/aw0FqZZQ76g)
 
 
 
