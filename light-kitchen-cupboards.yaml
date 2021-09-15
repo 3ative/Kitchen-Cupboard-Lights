@@ -3,7 +3,7 @@ esphome:
   platform: ESP8266
   board: d1_mini
 
-  # Sets the light to 50% on boot
+  # Sets the light to 20% on boot
   on_boot:
     priority: 700
     then:
@@ -40,6 +40,11 @@ switch:
     id: day_night_mode
     name: ${name} Day / Night
     optimistic: true
+    on_turn_off:
+      then:
+        - light.turn_off: led_lights
+        - lambda: !lambda |-
+            id(timer).publish_state(false);
 
 binary_sensor:
   - platform: template
@@ -58,10 +63,7 @@ binary_sensor:
                 - light.is_off: led_lights
                 - switch.is_on: day_night_mode
             then:
-              - light.turn_on:
-                  id: led_lights
-                  brightness: !lambda |-
-                    return id(led_lights).current_values.get_brightness();
+              - light.turn_on: led_lights
               - lambda: !lambda |-
                   id(timer).publish_state(true);
             else:
@@ -92,9 +94,9 @@ light:
     id: led_lights
     name: ${name}
     output: output_pwm
-    default_transition_length: 1s
+    default_transition_length: 2048ms
 output:
   - platform: esp8266_pwm
-    frequency: 4000
+    frequency: 1024
     id: output_pwm
     pin: D8
