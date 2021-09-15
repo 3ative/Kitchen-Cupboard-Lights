@@ -3,7 +3,7 @@ esphome:
   platform: ESP8266
   board: d1_mini
 
-  # Sets the light to 20% on boot
+  # Sets the light to 50% on boot
   on_boot:
     priority: 700
     then:
