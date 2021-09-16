@@ -12,7 +12,7 @@ Grab the full ESPHome Code from the file: [light-kitchen-cupboards.yaml](https:/
 > - Manual Override - _Won't turn off / timeout if light is already on_
 
 
-#### YouTube tutorial for build guide and a full code run-down: [ESPHome: Motion Sensing Kitchen Lights Tutorial](https://youtu.be/aw0FqZZQ76g)
+#### YouTube tutorial for build guide and a full code run-down: [ESPHome: Motion Sensing Kitchen Lights Tutorial](https://youtu.be/Z07tGZzi0BQ)
 
 
 
