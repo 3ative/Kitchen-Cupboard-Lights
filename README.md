@@ -14,13 +14,7 @@ Grab the full ESPHome Code from the file: [light-kitchen-cupboards.yaml](https:/
 
 #### YouTube tutorial for build guide and a full code run-down: [ESPHome: Motion Sensing Kitchen Lights Tutorial](https://youtu.be/Z07tGZzi0BQ)
 
-
-
-
-
-
-🎁 Found this useful or want to say 'thanks' and support my efforts...
-
-[![BMC](https://www.buymeacoffee.com/assets/img/custom_images/white_img.png)](https://www.buymeacoffee.com/3ative) **And leave a me a message to let me know how much you ❤ it.**
-
-🍺 CHEERS! 👍
+#### 💖 Found this useful, want to say '*Thanks*' and support my efforts. *CHEERS*🍺
+| Buy me a Coffee | PATREON |
+|-----------------|---------|
+| https://www.buymeacoffee.com/3ative | https://www.patreon.com/3ative |
