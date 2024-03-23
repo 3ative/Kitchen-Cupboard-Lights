@@ -1,4 +1,0 @@
-{
-    "esphome.dashboardUri": "hassio.local:6052",
-    "esphome.validator": "dashboard"
-}
